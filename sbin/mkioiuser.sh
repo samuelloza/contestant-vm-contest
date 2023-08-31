@@ -72,4 +72,12 @@ cp /opt/ioi/misc/ioistart.desktop /usr/share/gnome/autostart/
 cp -a /opt/ioi/misc/mozilla ~ioi/.mozilla
 chown -R ioi.ioi ~ioi/.mozilla
 
+mkdir -p /home/ioi/.config/Code/User
+cat >/home/ioi/.config/Code/User/settings.json <<'EOM'
+{
+    "C_Cpp.default.cppStandard": "gnu++17"
+}
+EOM
+chown -R ioi.ioi /home/ioi/.config
+
 logger -p local0.info "MKIOIUSER: IOI user created"
