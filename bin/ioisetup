@@ -105,6 +105,8 @@ do_core_setup()
 	# populate root's known_hosts
 	sudo /opt/ioi/bin/ioiconf.sh keyscan
 
+	# TODO trigger not only on VPN setup:
+	#   Trigger during startup instead?
 	# download new ansible pubkey
 	sudo /opt/ioi/bin/ioiconf.sh getpubkey
 	if [ $? -ne 0 ]; then
