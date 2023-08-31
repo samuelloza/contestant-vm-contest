@@ -71,25 +71,13 @@ EOM
 monitor()
 {
 	DATE=$(date +%Y%m%d%H%M%S)
-	DISPLAY=:0.0 sudo -u ioi xhost +local:root > /dev/null
 	echo "$DATE monitor run" >> /opt/ioi/store/contest.log
 
 	# capture screen every minute but with 50% chance
 	if [ $(seq 2 | shuf | head -1) -eq 2 ]; then
 		USER=$(cat /opt/ioi/run/userid.txt)
-		DISPLAY=:0.0 xwd -root -silent | convert xwd:- png:- | bzip2 -c - \
-			> /opt/ioi/store/screenshots/$USER-$DATE.png.bz2
-	fi
-
-	RESOLUTION=$(DISPLAY=:0.0 xdpyinfo | grep dimensions | awk '{print $2}')
-	if [ -f /opt/ioi/run/resolution ]; then
-		if [ "$RESOLUTION" != "$(cat /opt/ioi/run/resolution)" ]; then
-			logger -p local0.alert "MONITOR: Display resolution changed to $RESOLUTION"
-			echo "$RESOLUTION" > /opt/ioi/run/resolution
-		fi
-	else
-		echo "$RESOLUTION" > /opt/ioi/run/resolution
-		logger -p local0.info "MONITOR: Display resolution is $RESOLUTION"
+		sudo -u ioi env DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u ioi)/bus /opt/ioi/sbin/take_screenshot.py \
+			> /opt/ioi/store/screenshots/$USER-$DATE.png
 	fi
 
 	# Check if auto backups are requested
