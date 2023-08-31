@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=CMS IOI 2023
+Exec=xdg-open https://cmsioi2023.hu
+Type=Application
