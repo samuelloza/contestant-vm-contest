@@ -29,7 +29,7 @@ fi
 mkdir /home/ioi/Desktop
 cp /usr/share/applications/gnome-keyboard-panel.desktop /home/ioi/Desktop
 chmod +x /home/ioi/Desktop/gnome-keyboard-panel.desktop
-chown ioi.ioi /home/ioi/Desktop/gnome-keyboard-panel.desktop
+chown ioi.ioi -R /home/ioi/Desktop
 sudo -Hu ioi dbus-run-session gio set /home/ioi/Desktop/gnome-keyboard-panel.desktop metadata::trusted true
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell.extensions.ding start-corner top-left
 
