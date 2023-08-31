@@ -4,17 +4,22 @@ source /opt/ioi/config.sh
 
 case "$1" in
 	start)
+		# TODO update
 		cat /opt/ioi/misc/iptables.save | \
 			sed -e 's/{POP_SERVER}/'${POP_SERVER}'/g' | \
 			sed -e 's/{BACKUP_SERVER}/'${BACKUP_SERVER}'/g' | \
 			sed -e 's/{CMS_PUBLIC_DOMAIN}/'${CMS_PUBLIC_DOMAIN}'/g' | \
-			sed -e 's#{SUBNET}#'${SUBNET}'#g' | tee|iptables-restore
+			sed -e 's#{SUBNET}#'${SUBNET}'#g' | iptables-restore
+		ip6tables-restore < /opt/ioi/misc/ip6tables.save
 		logger -p local0.info "FIREWALL: started"
 		;;
 	stop)
 		iptables -P INPUT ACCEPT
 		iptables -P OUTPUT ACCEPT
 		iptables -F
+		ip6tables -P INPUT ACCEPT
+		ip6tables -P OUTPUT ACCEPT
+		ip6tables -F
 		logger -p local0.info "FIREWALL: stopped"
 		;;
 	*)
