@@ -59,6 +59,10 @@ do_config()
 	systemctl enable zabbix-agent 2> /dev/null
 	systemctl start zabbix-agent 2> /dev/null
 
+	# Ensure backup server is accessible without prompt
+	mkdir -p /root/.ssh && chmod 700 /root/.ssh
+	ssh-keyscan $BACKUP_SERVER > /root/.ssh/known_hosts
+
 	# Generate an instance ID to uniquely id this VM
 	if [ ! -f /opt/ioi/run/instanceid.txt ]; then
 		openssl rand 10 | base32 > /opt/ioi/run/instanceid.txt
