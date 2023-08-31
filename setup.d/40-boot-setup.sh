@@ -12,19 +12,15 @@ echo "- Rethink logic:"
 echo "  - is 15 sec enough?"
 exit 0
 
-VG="ubuntu-vg"
-ORIGIN_LV="ubuntu-lv"
-SNAPSHOT_LV="ubuntu-snapshot"
-
-cat <<EOM >/etc/initramfs-tools/hooks/zerofree
+cat <<'EOM' >/etc/initramfs-tools/hooks/zerofree
 #!/bin/sh
 PREREQ=""
 prereqs()
 {
-   echo "\$PREREQ"
+   echo "$PREREQ"
 }
 
-case \$1 in
+case $1 in
 prereqs)
    prereqs
    exit 0
@@ -42,15 +38,15 @@ exit 0
 EOM
 chmod 755 /etc/initramfs-tools/hooks/zerofree
 
-cat <<EOM >/etc/initramfs-tools/scripts/local-premount/prompt
+cat <<'EOM' >/etc/initramfs-tools/scripts/local-premount/prompt
 #!/bin/sh
 PREREQ="lvm"
 prereqs()
 {
-   echo "\$PREREQ"
+   echo "$PREREQ"
 }
 
-case \$1 in
+case $1 in
 prereqs)
    prereqs
    exit 0
@@ -58,6 +54,10 @@ prereqs)
 esac
 
 # Source: thicc-boiz repository from KSZK
+
+VG="ubuntu-vg"
+ORIGIN_LV="ubuntu-lv"
+SNAPSHOT_LV="ubuntu-snapshot"
 
 set -e
 
@@ -67,14 +67,14 @@ panic()
 {
   echo ""
   echo "ERROR!!!"
-  echo "AUTO ROLLBACK FAILED: \${@}"
+  echo "AUTO ROLLBACK FAILED: ${@}"
   exit 1
 }
 
 banner()
 {
   echo ""
-  echo "=== \${@} ==="
+  echo "=== ${@} ==="
   echo ""
   sleep 2
 }
@@ -91,7 +91,7 @@ rollback_snapshot()
 
 # main
 
-if [ \$(lvm vgs --noheadings -o vg_name 2>/dev/null | grep "${VG}" | wc -l) -ne "1" ]; then
+if [ $(lvm vgs --noheadings -o vg_name 2>/dev/null | grep "${VG}" | wc -l) -ne "1" ]; then
   panic "The presence of the volume group is dubious!"
 fi
 
