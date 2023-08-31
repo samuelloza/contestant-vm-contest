@@ -55,10 +55,6 @@ esac
 
 # Source: thicc-boiz repository from KSZK
 
-VG="ubuntu-vg"
-ORIGIN_LV="ubuntu-lv"
-SNAPSHOT_LV="ubuntu-snapshot"
-
 set -e
 
 # functions
@@ -81,27 +77,54 @@ banner()
 
 create_snapshot()
 {
-  lvm lvcreate -s -p r -v -n "${SNAPSHOT_LV}" -l '100%ORIGIN' "${VG}/${ORIGIN_LV}"
+  dd bs=1048576 if=/dev/nvme0n1p2 of=/diskimage/image.img
+  touch /diskimage/snapshot.created
 }
 
 rollback_snapshot()
 {
-  lvm lvconvert --mergesnapshot -v -i 2 -y "${VG}/${SNAPSHOT_LV}"
+  dd bs=1048576 if=/diskimage/image.img of=/dev/nvme0n1p2
 }
 
-# main
+mkdir /diskimage
+mount /dev/nvme0n1p3 /diskimage
 
-if [ $(lvm vgs --noheadings -o vg_name 2>/dev/null | grep "${VG}" | wc -l) -ne "1" ]; then
-  panic "The presence of the volume group is dubious!"
+
+if [ -f "/diskimage/snapshot.created" ]; then
+  echo ""
+  echo "  ==================================================="
+  echo "             Snapshot creation disabled,"
+  echo "               snapshot already exists!"
+  echo "  ==================================================="
+  echo ""
+
+else
+  echo ""
+  echo "  ==================================================="
+  echo "                   Creating snapshot!"
+  echo "  ==================================================="
+  echo ""
+
+  banner "Creating snapshot"
+  create_snapshot
+  umount  /diskimage
+  mount /dev/nvme0n1p2 /diskimage
+  touch /diskimage/prevent.rollback
+  umount  /diskimage
+  banner "Successfully created snapshot, press any key to shutdown"
+  read -n 1
+  banner "Shutting down"
+  poweroff -f
 fi
 
-if ! lvm lvs --noheadings -o lv_name "${VG}" 2>/dev/null | grep -qs "${ORIGIN_LV}" 2>/dev/null; then
-  panic "Origin LV not found!"
-fi
+umount  /diskimage
+mount /dev/nvme0n1p2 /diskimage
 
-if lvm lvs --noheadings -o lv_name "${VG}" 2>/dev/null | grep -qs "${SNAPSHOT_LV}" 2>/dev/null; then
-  # Yes snapshot
-
+if [ -f "/diskimage/prevent.rollback" ]; then
+  umount  /diskimage
+  banner "Rollback disabled!"
+else
+  umount  /diskimage
   echo ""
   echo "  ==================================================="
   echo "           Press any key to attempt rollback!"
@@ -113,29 +136,19 @@ if lvm lvs --noheadings -o lv_name "${VG}" 2>/dev/null | grep -qs "${SNAPSHOT_LV
 
     banner "Rollback aborted! The filesystem contents will be preserved!"
     exit 0
-
+  else
+    mount /dev/nvme0n1p3 /diskimage
+    banner "Rolling back"
+    rollback_snapshot
+    umount  /diskimage
+    mount /dev/nvme0n1p2 /diskimage
+    touch /diskimage/prevent.rollback
+    umount  /diskimage
+    banner "Successfull rollback, press any key to reboot"
+    read -n 1
+    banner "Rebooting"
+    reboot -f
   fi
-
-  # Perform rollback
-  rollback_snapshot
-  banner "Restoring OS and booting up"
-
-  create_snapshot
-  banner "Snapshot created!"
-else
-  # No snapshot
-  banner "First boot after setting up! Will zerofree disk and create snapshot!"
-
-  # Perform snapshot creation
-  if [ ! -x "/sbin/zerofree" ]; then
-    panic "zerofree executable not found"
-  fi
-
-  zerofree /dev/${VG}/${ORIGIN_LV}
-  create_snapshot
-  banner "Snapshot created! Will shut down now."
-
-  poweroff -f
 fi
 EOM
 chmod 755 /etc/initramfs-tools/scripts/local-premount/prompt
