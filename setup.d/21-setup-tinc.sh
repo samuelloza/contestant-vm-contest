@@ -13,6 +13,8 @@ mkdir -p /etc/tinc/vpn/hosts
 cat - <<'EOM' > /etc/tinc/vpn/host-up
 #!/bin/bash
 
+[[ "$NODE" =~ pop* ]] || exit 0
+
 source /opt/ioi/config.sh
 logger -p local0.info TINC: VPN connection to $NODE $REMOTEADDRESS:$REMOTEPORT is up
 
@@ -28,6 +30,8 @@ cp /etc/tinc/vpn/host-up /opt/ioi/misc/
 
 cat - <<'EOM' > /etc/tinc/vpn/host-down
 #!/bin/bash
+
+[[ "$NODE" =~ pop* ]] || exit 0
 
 logger -p local0.info TINC: VPN connection to $NODE $REMOTEADDRESS:$REMOTEPORT is down
 EOM
