@@ -28,5 +28,7 @@
 -A OUTPUT -p tcp -m tcp -m multiport -d {POP_SERVER} --dports 80,443 -j ACCEPT
 # Fall-back domain
 -A OUTPUT -p tcp -m tcp -m multiport -d {CMS_PUBLIC_DOMAIN} --dports 80,443 -j ACCEPT
+# For administrative blocking, rejecting is a good idea
+# e.g. dropping caused https://github.com/ioi-2023/contestant-vm/issues/78
 -A OUTPUT -j REJECT --reject-with icmp-admin-prohibited
 COMMIT
