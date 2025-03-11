@@ -3,5 +3,5 @@
 set -x
 set -e
 
-pip3 install PySide6-Essentials
+pip install PySide6-Essentials --break-system-packages
 apt -y install fonts-recommended

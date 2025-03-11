@@ -10,7 +10,7 @@ set -e
 #   and packages previously removed were uninstalled here
 
 apt-mark auto gnome-power-manager brltty extra-cmake-modules
-apt-mark auto llvm-13-dev zlib1g-dev libobjc-11-dev libx11-dev dpkg-dev manpages-dev
+apt-mark auto zlib1g-dev libobjc-11-dev libx11-dev dpkg-dev manpages-dev
 apt-mark auto linux-firmware memtest86+
 apt-mark auto network-manager-openvpn network-manager-openvpn-gnome openvpn
 apt-mark auto autoconf autotools-dev
