@@ -1,182 +1,231 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>IOI2023</title>
-<style type="text/css">
-/* share-regular - latin */
-@font-face {
-  font-family: 'Share';
-  font-style: normal;
-  font-weight: 400;
-  src: url('fonts/share-v11-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Share Regular'), local('Share-Regular'),
-       url('fonts/share-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/share-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/share-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('fonts/share-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/share-v11-latin-regular.svg#Share') format('svg'); /* Legacy iOS */
-}
-/* fira-sans-regular - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('fonts/fira-sans-v10-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Fira Sans Regular'), local('FiraSans-Regular'),
-       url('fonts/fira-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fira-sans-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/fira-sans-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('fonts/fira-sans-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/fira-sans-v10-latin-regular.svg#FiraSans') format('svg'); /* Legacy iOS */
-}
-body{font:normal 100%/1.4 "Fira Sans",sans-serif;-webkit-text-size-adjust:100%;}
-h1,h2,h3,h4,h5,h6,.ll{font-family:'Share';font-weight:bold;padding:0;line-height:1.2;clear:left;}
-h3{font-size:1.2em;}
-code{font-size:16px;background-color:#eee;}
-</style>
+  <meta charset="UTF-8">
+  <title>IOI2025</title>
+  <style type="text/css">
+    /* share-regular - latin */
+    @font-face {
+      font-family: 'Share';
+      font-style: normal;
+      font-weight: 400;
+      src: url('fonts/share-v11-latin-regular.eot');
+      /* IE9 Compat Modes */
+      src: local('Share Regular'), local('Share-Regular'),
+        url('fonts/share-v11-latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('fonts/share-v11-latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('fonts/share-v11-latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('fonts/share-v11-latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('fonts/share-v11-latin-regular.svg#Share') format('svg');
+      /* Legacy iOS */
+    }
+
+    /* fira-sans-regular - latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: url('fonts/fira-sans-v10-latin-regular.eot');
+      /* IE9 Compat Modes */
+      src: local('Fira Sans Regular'), local('FiraSans-Regular'),
+        url('fonts/fira-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('fonts/fira-sans-v10-latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('fonts/fira-sans-v10-latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('fonts/fira-sans-v10-latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('fonts/fira-sans-v10-latin-regular.svg#FiraSans') format('svg');
+      /* Legacy iOS */
+    }
+
+    body {
+      font: normal 100%/1.4 "Fira Sans", sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .ll {
+      font-family: 'Share';
+      font-weight: bold;
+      padding: 0;
+      line-height: 1.2;
+      clear: left;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    code {
+      font-size: 16px;
+      background-color: #eee;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Contestant Machine Manual</h1>
+  <h1>Contestant Machine Manual</h1>
 
-<h2>Local User Account</h2>
+  <h2>Local User Account</h2>
 
-<p>There is only one normal local (Ubuntu) user account in the contestant machine for the
-contestant to use. The username is <code>ioi</code> with default password
-<code>ioi</code>.</p>
+  <p>There is only one normal local (Ubuntu) user account in the contestant machine for the
+    contestant to use. The username is <code>ioi</code> with default password
+    <code>ioi</code>.
+  </p>
 
-<p>To avoid confusion, you should <strong>NOT</strong> change
-the <code>ioi</code> local user account password in the contestant machine.</p>
+  <p>To avoid confusion, you should <strong>NOT</strong> change
+    the <code>ioi</code> local user account password in the contestant machine.</p>
 
-<h2>Contestant Account</h2>
+  <h2>Contestant Account</h2>
 
-<p>At your first login to the contestant machine, and every subsequent login as long
-as you do not complete this step, you will be prompted to run the <strong>IOI Setup</strong>.
+  <p>At your first login to the contestant machine, and every subsequent login as long
+    as you do not complete this step, you will be prompted to run the <strong>IOI Setup</strong>.
 
-<p>Enter your contestant account (for now both username and password is <code>ioi</code>), and wait until you see a success message.</p>
+  <p>Enter your contestant account (for now both username and password is <code>ioi</code>), and wait until you see a
+    success message.</p>
 
-<p>You can also re-run IOI Setup by running <code>ioisetup</code> from the
-terminal.</p>
+  <p>You can also re-run IOI Setup by running <code>ioisetup</code> from the
+    terminal.</p>
 
-<p>The IOI Setup will download
-and install a VPN configuration. The UNIX "gecos real name" is also updated
-with your contestant username, e.g. XXX1, which will be displayed in the top right
-corner on subsequent logins.</p>
+  <p>The IOI Setup will download
+    and install a VPN configuration. The UNIX "gecos real name" is also updated
+    with your contestant username, e.g. XXX1, which will be displayed in the top right
+    corner on subsequent logins.</p>
 
-<p>The VPN connection identifies this computer to the IOI 2023 grading system
-as being associated to the configured contestant. If
-another contestant takes over the use of this computer, they must re-run IOI
-Setup with their credentials.</p>
+  <p>The VPN connection identifies this computer to the IOI 2025 grading system
+    as being associated to the configured contestant. If
+    another contestant takes over the use of this computer, they must re-run IOI
+    Setup with their credentials.</p>
 
-<p><strong>IMPORTANT</strong>: There must be only <strong>one</strong> machine running and
-connected to the IOI 2023 grading system per contestant credentials. If the
-same contestant is logged in more than once, the VPN connection will flap
-between the two instances and will <strong>NOT</strong> be usable. <strong>During the contest days, the IOI Setup will be completely handled by the organizers, so the contestants will not need to perform any authentication on the machine.</strong></p>
+  <p><strong>IMPORTANT</strong>: There must be only <strong>one</strong> machine running and
+    connected to the IOI 2025 grading system per contestant credentials. If the
+    same contestant is logged in more than once, the VPN connection will flap
+    between the two instances and will <strong>NOT</strong> be usable. <strong>During the contest days, the IOI Setup
+      will be completely handled by the organizers, so the contestants will not need to perform any authentication on
+      the machine.</strong></p>
 
-<h2>Applications</h2>
+  <h2>Applications</h2>
 
-<p>The sidebar on the left is called the <strong>Launcher</strong>.</p>
+  <p>The sidebar on the left is called the <strong>Launcher</strong>.</p>
 
-<p>The top icon in the Launcher is the <strong>Firefox</strong> web browser.
-Firefox has been configured with a default homepage that provides links to CMS
-(grading system) as well as other locally stored documentation.</p>
+  <p>The top icon in the Launcher is the <strong>Firefox</strong> web browser.
+    Firefox has been configured with a default homepage that provides links to CMS
+    (grading system) as well as other locally stored documentation.</p>
 
-<p>The <strong>Show Applications</strong> icon, located at the bottom of the Launcher,
-shows all installed applications. You can use the search bar to quickly find an application
-by name. For example, you can easily find <code>gnome-terminal</code> by starting to type the
-letters of <code>terminal</code>.</p>
+  <p>The <strong>Show Applications</strong> icon, located at the bottom of the Launcher,
+    shows all installed applications. You can use the search bar to quickly find an application
+    by name. For example, you can easily find <code>gnome-terminal</code> by starting to type the
+    letters of <code>terminal</code>.</p>
 
 
-<h2>Advanced Features</h2>
+  <h2>Advanced Features</h2>
 
-<h3>Home Directory Backup (not available yet)</h3>
+  <h3>Home Directory Backup (not available yet)</h3>
 
-<p>The contestant machine provides a backup/replication mechanism that uses rsync to
-replicate the home directory to IOI 2023
-backup server. This is not enabled by default. Contestants can
-either:</p>
+  <p>The contestant machine provides a backup/replication mechanism that uses rsync to
+    replicate the home directory to IOI 2025
+    backup server. This is not enabled by default. Contestants can
+    either:</p>
 
-<ul>
-	<li>Run the <code>ioibackup</code> script at any time to perform the rsync.</li>
-	<li>Run <code>ioiconf setautobackup on</code> to enable automatic backup at a
-	5-minute interval. A random delay up to 30 seconds in inserted before automatic
-	backup.</li>
-	<li>Run <code>ioiconf setautobackup off</code> to disable automatic backup.</li>
-</ul>
+  <ul>
+    <li>Run the <code>ioibackup</code> script at any time to perform the rsync.</li>
+    <li>Run <code>ioiconf setautobackup on</code> to enable automatic backup at a
+      5-minute interval. A random delay up to 30 seconds in inserted before automatic
+      backup.</li>
+    <li>Run <code>ioiconf setautobackup off</code> to disable automatic backup.</li>
+  </ul>
 
-<p>Backups are available only during contest and practice time.</p>
+  <p>Backups are available only during contest and practice time.</p>
 
-<p>This backup is more accurately described as replication. It uses <code>rsync</code> with the <code>--delete</code>
-option, which means the remote contents are a mirror of the local home directory. In
-particular, files deleted locally will also be removed at the remote. This replication only
-includes non-hidden files up to a maximum size of 100 KB.</p>
+  <p>This backup is more accurately described as replication. It uses <code>rsync</code> with the <code>--delete</code>
+    option, which means the remote contents are a mirror of the local home directory. In
+    particular, files deleted locally will also be removed at the remote. This replication only
+    includes non-hidden files up to a maximum size of 100 KB.</p>
 
-<p>To restore or retrieve files from remote, run <code>ioibackup -r</code>. The files will
-be restored in <code>/tmp/restore</code>.</p>
+  <p>To restore or retrieve files from remote, run <code>ioibackup -r</code>. The files will
+    be restored in <code>/tmp/restore</code>.</p>
 
-<h3>Automatic Screen Lock</h3>
+  <h3>Automatic Screen Lock</h3>
 
-<p>Automatic screen lock is enabled by default, with a 30 second delay after 15 minutes of
-idle time. You can disable automatic screen lock by running
-<code>ioiconf setscreenlock off</code>. Run <code>ioiconf setscreenlock on</code> to
-re-enable automatic screen lock.</p>
+  <p>Automatic screen lock is enabled by default, with a 30 second delay after 15 minutes of
+    idle time. You can disable automatic screen lock by running
+    <code>ioiconf setscreenlock off</code>. Run <code>ioiconf setscreenlock on</code> to
+    re-enable automatic screen lock.
+  </p>
 
-<h3>Timezone</h3>
+  <h3>Timezone</h3>
 
-<p>The contestant machine is configured to show time in the <strong>Europe/Budapest</strong> timezone.
-All dates and times communicated by the IOI 2023 organizers will be in
-Europe/Budapest timezone unless otherwise specified.</p>
+  <p>The contestant machine is configured to show time in the <strong>Europe/Budapest</strong> timezone.
+    All dates and times communicated by the IOI 2025 organizers will be in
+    Europe/Budapest timezone unless otherwise specified.</p>
 
-<p>If you strongly prefer to see the time in your local timezone, you can run
-<code>ioiconf settz &lt;timezone&gt;</code>, where
-<code>&lt;timezone&gt;</code> is an appropriate TZ specification (according to
-<code>tzselect</code>). The changes will be effected the next time you login to
-the <code>ioi</code> account.</p>
+  <p>If you strongly prefer to see the time in your local timezone, you can run
+    <code>ioiconf settz &lt;timezone&gt;</code>, where
+    <code>&lt;timezone&gt;</code> is an appropriate TZ specification (according to
+    <code>tzselect</code>). The changes will be effected the next time you login to
+    the <code>ioi</code> account.
+  </p>
 
-<p>E.g.: <code>ioiconf settz UTC</code> to use GMT time.</p>
+  <p>E.g.: <code>ioiconf settz UTC</code> to use GMT time.</p>
 
-<h3>VPN Protocol Mode</h3>
+  <h3>VPN Protocol Mode</h3>
 
-<p>By default, the VPN is configured to use <strong>TCP on port 655 only</strong>. The VPN
-software, <strong>tinc</strong>, can also use UDP on port 655 for data packets, in addition to
-using TCP on port 655 for metadata. This may improve performance, provided your
-network permits UDP port 655 traffic outbound and inbound. This mode can be
-enabled by running <code>ioiconf setvpnproto auto</code>, then <code>ioiconf
+  <p>By default, the VPN is configured to use <strong>TCP on port 655 only</strong>. The VPN
+    software, <strong>tinc</strong>, can also use UDP on port 655 for data packets, in addition to
+    using TCP on port 655 for metadata. This may improve performance, provided your
+    network permits UDP port 655 traffic outbound and inbound. This mode can be
+    enabled by running <code>ioiconf setvpnproto auto</code>, then <code>ioiconf
 vpnrestart</code> (or restart the contestant machine).</p>
 
-<p>In auto mode, both TCP/UDP will be used, with automatic fallback to
-TCP-only. To revert to the default TCP-only setting, run <code>ioiconf
+  <p>In auto mode, both TCP/UDP will be used, with automatic fallback to
+    TCP-only. To revert to the default TCP-only setting, run <code>ioiconf
 setvpnproto tcp</code>, then <code>ioiconf vpnrestart</code> (or restart the
-contestant machine).</p>
+    contestant machine).</p>
 
-<p>Note that the VPN protocol mode will return to default if the VPN is re-setup
-(i.e. by re-running <code>ioisetup</code>).</p>
+  <p>Note that the VPN protocol mode will return to default if the VPN is re-setup
+    (i.e. by re-running <code>ioisetup</code>).</p>
 
-<h3>Import VSCode extensions from local machine</h3>
+  <h3>Import VSCode extensions from local machine</h3>
 
-C/C++ extension is installed by default for every contestant. But some extensions are unconvenient to install for all contestants. However, we have made available the following extensions:
+  C/C++ extension is installed by default for every contestant. But some extensions are unconvenient to install for all
+  contestants. However, we have made available the following extensions:
 
-<ul>
-<li>VSCode VIM</li>
-<li>IntelliJ Idea Keybindings</li>
-<li>clangd, alternative to C/C++ extension (we have deemed the extension somewhat unstable. Thus, code completion, diagnostics or code actions might stop working. Known workarounds are combinations of restarting VSCode, restarting clangd LSP from VSCode, deleting ~/.cache/clangd or disabling the extension in favor of C/C++)</li>
-</ul>
+  <ul>
+    <li>VSCode VIM</li>
+    <li>IntelliJ Idea Keybindings</li>
+    <li>clangd, alternative to C/C++ extension (we have deemed the extension somewhat unstable. Thus, code completion,
+      diagnostics or code actions might stop working. Known workarounds are combinations of restarting VSCode,
+      restarting clangd LSP from VSCode, deleting ~/.cache/clangd or disabling the extension in favor of C/C++)</li>
+  </ul>
 
-Installation can be done in the following way:
+  Installation can be done in the following way:
 
-<ol>
-<li>Start VSCode</li>
-<li>Select Extensions icon from the left sidebar</li>
-<li>In the top-right side of the tab, select the "..." menu</li>
-<li>Select "Install from VSIX..."</li>
-<li>Open the "extra-vsc-exts" bookmark and select the extension you want to install</li>
-<li>The extension will be installed and enabled automatically</li>
-</ol>
+  <ol>
+    <li>Start VSCode</li>
+    <li>Select Extensions icon from the left sidebar</li>
+    <li>In the top-right side of the tab, select the "..." menu</li>
+    <li>Select "Install from VSIX..."</li>
+    <li>Open the "extra-vsc-exts" bookmark and select the extension you want to install</li>
+    <li>The extension will be installed and enabled automatically</li>
+  </ol>
 
-<div>
-<img src="manual-import-vsix-1.png">
-<img src="manual-import-vsix-2.png">
-</div>
+  <div>
+    <img src="manual-import-vsix-1.png">
+    <img src="manual-import-vsix-2.png">
+  </div>
 
 </body>
+
 </html>
