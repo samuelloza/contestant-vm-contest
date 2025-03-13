@@ -5,7 +5,7 @@ set -e
 
 # 25G -> https://bugs.launchpad.net/subiquity/+bug/1907128
 qemu-img create -f qcow2 disk.img 50G
-wget -c -O ubuntu.iso https://old-releases.ubuntu.com/releases/jammy/ubuntu-22.04.2-live-server-amd64.iso
+wget -c -O ubuntu.iso https://old-releases.ubuntu.com/releases/noble/ubuntu-24.04-live-server-amd64.iso
 
 # Open http server for port 8000
 python3 -m http.server &

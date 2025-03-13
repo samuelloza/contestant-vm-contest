@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test -f ubuntu.iso || curl https://www.releases.ubuntu.com/22.04/ubuntu-22.04.2-live-server-amd64.iso -o ubuntu.iso
+test -f ubuntu.iso || curl https://www.releases.ubuntu.com/24.04/ubuntu-24.04.1-live-server-amd64.iso -o ubuntu.iso
 
 echo 'You will need to initialize shell (e.g. `init=/bin/bash` kernel parameter in GRUB)'
 echo 'From this shell, run `zerofree /dev/sda2`'
