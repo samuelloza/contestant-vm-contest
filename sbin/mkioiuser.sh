@@ -7,10 +7,11 @@ useradd -m ioi
 
 # Setup desktop background
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-options 'centered'
-sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-uri \
-	'file:///opt/ioi/misc/ioi-wallpaper.png'
-sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-uri-dark \
-	'file:///opt/ioi/misc/ioi-wallpaper.png'
+sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-uri 'file:///opt/ioi/misc/ioi-wallpaper.png'
+sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-uri-dark 'file:///opt/ioi/misc/ioi-wallpaper.png'
+sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background primary-color '#000000'
+sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background secondary-color '#000000'
+
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell enabled-extensions "['add-username-ext', 'stealmyfocus-ext']"
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell disable-user-extensions false
 # Favorites (apps in sidebar): Removed yelp (help function),
