@@ -10,6 +10,6 @@ set -e
 echo "ioi:ioi" | chpasswd
 
 # Fix permission and ownership
-chown ioi.ioi /opt/ioi/store/submissions
-chown ansible.syslog /opt/ioi/store/log
+chown ioi:ioi /opt/ioi/store/submissions
+chown ansible:syslog /opt/ioi/store/log
 chmod 770 /opt/ioi/store/log
