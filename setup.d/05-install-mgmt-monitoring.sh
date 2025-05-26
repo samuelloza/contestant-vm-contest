@@ -19,7 +19,7 @@ LogFile=/var/log/zabbix/zabbix_agent2.log
 LogFileSize=0
 Server=staticsvm.ioi2025.bo
 ServerActive=staticsvm.ioi2025.bo
-HostnameItem=system.hostname
+HostnameItem=system.run["(cat /sys/class/dmi/id/product_uuid 2>/dev/null || ip link | awk '/ether/ {print $2; exit}' | tr -d ':' || hostname) | tr -cd 'A-Za-z0-9-_'"]
 Include=/etc/zabbix/zabbix_agent2.d/*.conf
 UnsafeUserParameters=1
 EOF
