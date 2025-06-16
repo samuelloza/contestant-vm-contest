@@ -20,7 +20,7 @@ The schedule file has the following format, with time formatted as `YYYY-mm-dd H
 
 For example,
 ```
-2020-09-13 19:00 2020-09-14 00:00 3 /opt/ioi/sbin/contest.sh prep 0
+2020-09-13 19:00 2020-09-14 00:00 3 /opt/icpcbo/sbin/contest.sh prep 0
 ```
 means that the command will be executed only once between `2020-09-13 19:00` and `2020-09-14 00:00`. If it is missed to execute the job, it may skip the command and directly execute the 3rd command (3rd line).
 
@@ -28,9 +28,9 @@ means that the command will be executed only once between `2020-09-13 19:00` and
 
 The main contest-related script is here: [`sbin/contest.sh`](../sbin/contest.sh).
 
-1. `contest lock` disables login as `ioi` user before the contest starts ("locks" the contestant). Usually this will be executed remotely to all contestant VMs.
-1. `contest prep <cid>` cleans up the VM by recreating the `ioi` user and removes all contestant-related generated data. This also starts the firewall and creates a file indicating that a contest is running (in "lockdown" mode). The `<cid>` itself is an unique contest identifier (unrelated to CMS contest id). Afterwards, the VM will be unlocked.
-1. `contest unlock` reenables login as `ioi` user ("unlocks" the contestant). This is already included as part of `prep` above, but admins may manually execute this remotely if for any reason a contestant VM is not unlocked yet.
+1. `contest lock` disables login as `icpcbo` user before the contest starts ("locks" the contestant). Usually this will be executed remotely to all contestant VMs.
+1. `contest prep <cid>` cleans up the VM by recreating the `icpcbo` user and removes all contestant-related generated data. This also starts the firewall and creates a file indicating that a contest is running (in "lockdown" mode). The `<cid>` itself is an unique contest identifier (unrelated to CMS contest id). Afterwards, the VM will be unlocked.
+1. `contest unlock` reenables login as `icpcbo` user ("unlocks" the contestant). This is already included as part of `prep` above, but admins may manually execute this remotely if for any reason a contestant VM is not unlocked yet.
 1. `contest start` starts the keylogger and the cron job for contest monitoring (see below).
 1. `contest monitor` is a command that will be executed every minute by a cron job. It will back up the home directory (only if autobackup is enabled) and will capture some data for monitoring purposes:
 

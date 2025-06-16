@@ -16,6 +16,6 @@ make
 make install
 # These SUID management scripts are not needed
 rm /usr/local/bin/llk /usr/local/bin/llkk
-cp ../keymaps/en_US_ubuntu_1204.map /opt/ioi/misc/
+cp ../keymaps/en_US_ubuntu_1204.map /opt/icpcbo/misc/
 popd
 rm -rf $WORKDIR

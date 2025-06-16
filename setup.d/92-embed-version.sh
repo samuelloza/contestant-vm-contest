@@ -5,5 +5,5 @@ set -e
 
 # Embed version number
 if [ -n "$VERSION" ] ; then
-	echo "$VERSION" > /opt/ioi/misc/VERSION
+	echo "$VERSION" > /opt/icpcbo/misc/VERSION
 fi

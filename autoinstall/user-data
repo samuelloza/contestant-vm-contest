@@ -20,7 +20,7 @@ autoinstall:
     layout:
       name: direct #lvm
   identity:
-    hostname: ioi-0804
+    hostname: icpcbo-0804
     username: ansible
     # ansible DO CHANGE!
     password: $6$NH0tTrHw/4v3.Jbi$6NCVzJ45i3N4HFF1vJpPobpdkGhgBq0t56KAGzjm4/wg1saD8N7akmBMaLbSH.UmpIdmZV8TUaqN2/pDaSSS0.
@@ -29,6 +29,13 @@ autoinstall:
     #authorized-keys:
     #  - $key
     allow-pw: no
+  write_files:
+    - path: /etc/environment
+      content: |
+        http_proxy=http://10.0.2.2:3128
+        https_proxy=http://10.0.2.2:3128    
+  runcmd:
+    - echo 'Acquire::http::Proxy "http://10.0.2.2:3128";' > /etc/apt/apt.conf.d/01proxy
   packages:
     - vim # for basic editing
     - git # for cloning the repo
@@ -42,10 +49,10 @@ autoinstall:
       - 'cd /home/ansible/contestant-vm && ./setup.sh'
     users:
       - default
-      - name: ioi
-        gecos: ioi
+      - name: icpcbo
+        gecos: icpcbo
         lock_passwd: false
-        # ioi
+        # icpcbo
         passwd: $6$ZMrIRti0JubrLV3t$mTkdv6Bmg0sGk3equaqqbwDFPL.t4ezClcVygHkxcKM/T7ovovNXncg1yLXDqWcXU/kXJY9sSfmHNb8P0Fu4R1
   #error-commands:
   #  - tar c /var/log/installer | nc 192.168.0.1 1000

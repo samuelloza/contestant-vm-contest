@@ -2,10 +2,10 @@
 # Disabled: we no longer use tinc VPN
 # TODO: refactor or remove this script entirely
 
-source /opt/ioi/config.sh
+source /opt/icpcbo/config.sh
 
 ZENARG='--width=300'
-ZENTITLE='--title=IOI Setup'
+ZENTITLE='--title=icpcbo Setup'
 
 USERID=
 CRED=
@@ -16,7 +16,7 @@ main()
 	# if check_user; then
 	#     read -d '' -r MSG<<-EOM
 	#         This system is already configured for: <b>$USERID</b>\n
-	#         Do you want to reconfigure to another IOI user?
+	#         Do you want to reconfigure to another icpcbo user?
 	#     EOM
 	#     zenity "$ZENTITLE" $ZENARG --question \
 	#         --text "$MSG"
@@ -28,7 +28,7 @@ main()
 	#             --text "$MSG"
 	#         exit 1
 	#     fi
-	#     logger -p local0.info "IOISETUP: previously configured for $USERID"
+	#     logger -p local0.info "icpcboSETUP: previously configured for $USERID"
 	# fi
 	# --- VPN + Zenity user check ---
 
@@ -73,9 +73,9 @@ do_setup()
 	# --- Zenity messages (disabled) ---
 	# if [ ${retval} -eq 1 ]; then
 	# 	read -d '' -r MSG<<-EOM
-	# 		IOI user successfully configured.
+	# 		icpcbo user successfully configured.
 	# 	EOM
-	# 	logger -p local0.info "IOISETUP: configured for ${CRED%|*}"
+	# 	logger -p local0.info "icpcboSETUP: configured for ${CRED%|*}"
 	# 	zenity "$ZENTITLE" $ZENARG \
 	# 		--info \
 	# 		--text "$MSG"
@@ -83,7 +83,7 @@ do_setup()
 	#
 	# if [ ${retval} -eq 2 ]; then
 	# 	read -d '' -r MSG<<-EOM
-	# 		Failed to communicate with the IOI 2023 configuration server.\n
+	# 		Failed to communicate with the icpcbo 2023 configuration server.\n
 	# 		Please try again. If this persists, please contact the HTC.
 	# 	EOM
 	# 	zenity "$ZENTITLE" $ZENARG \
@@ -117,9 +117,9 @@ do_core_setup()
 {
 	# --- VPN configuration logic (disabled) ---
 
-	# sudo /opt/ioi/bin/ioiconf.sh keyscan
+	# sudo /opt/icpcbo/bin/icpcboconf.sh keyscan
 
-	# sudo /opt/ioi/bin/ioiconf.sh getpubkey
+	# sudo /opt/icpcbo/bin/icpcboconf.sh getpubkey
 	# if [ $? -ne 0 ]; then
 	# 	echo "100"
 	# 	return 2  # connection issue
@@ -139,7 +139,7 @@ do_core_setup()
 
 	echo "50"
 
-	# sudo /opt/ioi/bin/ioiconf.sh vpnconfig /tmp/vpn.tar.bz2 $CRED
+	# sudo /opt/icpcbo/bin/icpcboconf.sh vpnconfig /tmp/vpn.tar.bz2 $CRED
 	# local retval=$?
 	# if [ $retval -ne 0 ]; then
 	# 	echo "100"
@@ -148,7 +148,7 @@ do_core_setup()
 
 	echo "75"
 
-	# sudo /opt/ioi/bin/ioiconf.sh vpnrestart
+	# sudo /opt/icpcbo/bin/icpcboconf.sh vpnrestart
 
 	echo "100"
 
@@ -158,11 +158,11 @@ do_core_setup()
 
 check_user()
 {
-	USERID=$(/opt/ioi/bin/ioicheckuser -q)
+	USERID=$(/opt/icpcbo/bin/icpcbocheckuser -q)
 	return $?
 }
 
-logger -p local0.info "IOISETUP: invoked"
+logger -p local0.info "icpcboSETUP: invoked"
 main "$@"; exit
 
 # vim: ft=sh ts=4 sw=4 noet

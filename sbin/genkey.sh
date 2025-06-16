@@ -2,7 +2,7 @@
 
 logger -p local0.info "GENKEY: invoked"
 
-(cat /etc/sudoers /etc/sudoers.d/* /opt/ioi/misc/VERSION; \
-	grep -v ioi /etc/passwd; \
-	grep -v ioi /etc/shadow ) \
+(cat /etc/sudoers /etc/sudoers.d/* /opt/icpcbo/misc/VERSION; \
+	grep -v icpcbo /etc/passwd; \
+	grep -v icpcbo /etc/shadow ) \
 	| sha256sum | cut -d\  -f1

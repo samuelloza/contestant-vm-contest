@@ -3,9 +3,9 @@
 # We no longer use the schedule
 # TODO: refactor or remove this script entirely
 
-# 2020-09-13 19:00 2020-09-14 00:00 3 /opt/ioi/sbin/contest.sh prep 0
+# 2020-09-13 19:00 2020-09-14 00:00 3 /opt/icpcbo/sbin/contest.sh prep 0
 
-# SCHEDULE="/opt/ioi/misc/schedule2.txt"
+# SCHEDULE="/opt/icpcbo/misc/schedule2.txt"
 
 # TIMENOW=$(date +"%Y-%m-%d %H:%M")
 
@@ -37,7 +37,7 @@
 #
 # 	cat - <<EOM | at -M "$ATTIME" 2> /dev/null
 # # AUTO-CONTEST-SCHEDULE
-# /opt/ioi/sbin/atrun.sh exec $JOBID
+# /opt/icpcbo/sbin/atrun.sh exec $JOBID
 # EOM
 #
 # 	logger -p local0.info "ATRUN: Scheduling next job $JOBID at $NEXTTIME"

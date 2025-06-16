@@ -11,21 +11,21 @@ set -e
 
 apt -y install net-tools openssh-server ansible xvfb oathtool imagemagick zabbix-agent2
 
-sed -i 's|/etc/zabbix/zabbix_agent2.conf|/etc/zabbix/zabbix_agent2_ioi.conf|' /usr/lib/systemd/system/zabbix-agent2.service
+sed -i 's|/etc/zabbix/zabbix_agent2.conf|/etc/zabbix/zabbix_agent2_icpcbo.conf|' /usr/lib/systemd/system/zabbix-agent2.service
 
-cat > /etc/zabbix/zabbix_agent2_ioi.conf <<EOF
+cat > /etc/zabbix/zabbix_agent2_icpcbo.conf <<EOF
 PidFile=/run/zabbix/zabbix_agent2.pid
 LogFile=/var/log/zabbix/zabbix_agent2.log
 LogFileSize=0
-Server=staticsvm.ioi2025.bo
-ServerActive=staticsvm.ioi2025.bo
+Server=staticsvm.icpcbo2025.bo
+ServerActive=staticsvm.icpcbo2025.bo
 HostnameItem=system.run["(cat /sys/class/dmi/id/product_uuid 2>/dev/null || ip link | awk '/ether/ {print $2; exit}' | tr -d ':' || hostname) | tr -cd 'A-Za-z0-9-_'"]
 Include=/etc/zabbix/zabbix_agent2.d/*.conf
 UnsafeUserParameters=1
 EOF
 
 mkdir -p /etc/zabbix/zabbix_agent2.d
-cat > /etc/zabbix/zabbix_agent2.d/ioi_custom.conf <<EOF
+cat > /etc/zabbix/zabbix_agent2.d/icpcbo_custom.conf <<EOF
 # Check if a process is running
 UserParameter=proc.exists[*],pgrep -x "\$1" > /dev/null && echo 1 || echo 0
 

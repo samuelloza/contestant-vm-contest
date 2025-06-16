@@ -3,7 +3,7 @@
 # We no longer use the schedule
 # TODO: refactor or remove this script entirely
 
-# PARTKEY=$(/opt/ioi/sbin/genkey.sh)
+# PARTKEY=$(/opt/icpcbo/sbin/genkey.sh)
 
 # if [ $# -lt 2 ]; then
 # 	echo "Too few arguments" >&2
@@ -18,12 +18,12 @@
 
 # FULLKEY=$(echo $PARTKEY $CMDSTRING | sha256sum | cut -d\  -f1)
 
-# logger -p local0.info "IOIEXEC: invoke '$CMDSTRING'"
+# logger -p local0.info "icpcboEXEC: invoke '$CMDSTRING'"
 
 # totp interval set to 30 minutes
 # if ! oathtool -s 1800 --totp $FULLKEY -d 8 -w 1 -- "$TOTP" > /dev/null 2>&1; then
 # 	echo "TOTP failed" >&2
-# 	logger -p local0.info "IOIEXEC: totp failed"
+# 	logger -p local0.info "icpcboEXEC: totp failed"
 # 	exit;
 # fi
 
@@ -33,7 +33,7 @@
 # 		iptables -P OUTPUT ACCEPT
 # 		iptables -P INPUT ACCEPT
 # 		iptables -F
-# 		logger -p local0.info "IOIEXEC: firewall stopped"
+# 		logger -p local0.info "icpcboEXEC: firewall stopped"
 # 		;;
 # 	vpnclear)
 # 		systemctl stop tinc@vpn
@@ -44,16 +44,16 @@
 # 		rm /etc/tinc/vpn/hosts/* 2> /dev/null
 # 		rm /etc/tinc/vpn/rsa_key.* 2> /dev/null
 # 		rm /etc/tinc/vpn/tinc.conf 2> /dev/null
-# 		rm /opt/ioi/config/ssh/ioibackup* 2> /dev/null
-# 		logger -p local0.info "IOIEXEC: vpn stopped"
-# 		chfn -f "IOI Contestant" ioi
+# 		rm /opt/icpcbo/config/ssh/icpcbobackup* 2> /dev/null
+# 		logger -p local0.info "icpcboEXEC: vpn stopped"
+# 		chfn -f "icpcbo Contestant" icpcbo
 # 		echo "Due to some issues, we have disabled VPN connection to CMS."
 # 		echo ""
 # 		echo "For now, open https://cms-public.nonexistent on Firefox,"
 # 		echo "and log in using the following credentials:"
 # 		echo ""
-# 		echo "- Username: $(cat /opt/ioi/run/username.txt)"
-# 		echo "- Password: $(cat /opt/ioi/run/password.txt)"
+# 		echo "- Username: $(cat /opt/icpcbo/run/username.txt)"
+# 		echo "- Password: $(cat /opt/icpcbo/run/password.txt)"
 # 		;;
 # esac
 

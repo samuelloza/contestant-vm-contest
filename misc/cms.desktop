@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=IOI 2025
-Exec=xdg-open file:///usr/share/doc/ioi/index.html
+Name=icpcbo 2025
+Exec=xdg-open file:///usr/share/doc/icpcbo/index.html
 Type=Application
 Icon=firefox

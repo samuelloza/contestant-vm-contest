@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>IOI2025</title>
+  <title>icpcbo2025</title>
   <style type="text/css">
     /* share-regular - latin */
     @font-face {
@@ -81,22 +81,22 @@
   <h2>Local User Account</h2>
 
   <p>There is only one normal local (Ubuntu) user account in the contestant machine for the
-    contestant to use. The username is <code>ioi</code> with default password
-    <code>ioi</code>.
+    contestant to use. The username is <code>icpcbo</code> with default password
+    <code>icpcbo</code>.
   </p>
 
   <p>To avoid confusion, you should <strong>NOT</strong> change
-    the <code>ioi</code> local user account password in the contestant machine.</p>
+    the <code>icpcbo</code> local user account password in the contestant machine.</p>
 
   <h2>Contestant Account</h2>
 
   <p>At your first login to the contestant machine, and every subsequent login as long
-    as you do not complete this step, you will be prompted to run the <strong>IOI Setup</strong>.
+    as you do not complete this step, you will be prompted to run the <strong>icpcbo Setup</strong>.
 
-  <p>Enter your contestant account (for now both username and password is <code>ioi</code>), and wait until you see a
+  <p>Enter your contestant account (for now both username and password is <code>icpcbo</code>), and wait until you see a
     success message.</p>
 
-  <p>You can also re-run IOI Setup by running <code>ioisetup</code> from the
+  <p>You can also re-run icpcbo Setup by running <code>icpcbosetup</code> from the
     terminal.</p>
 
   <h2>Applications</h2>
@@ -118,16 +118,16 @@
   <h3>Home Directory Backup (not available yet)</h3>
 
   <p>The contestant machine provides a backup/replication mechanism that uses rsync to
-    replicate the home directory to IOI 2025
+    replicate the home directory to icpcbo 2025
     backup server. This is not enabled by default. Contestants can
     either:</p>
 
   <ul>
-    <li>Run the <code>ioibackup</code> script at any time to perform the rsync.</li>
-    <li>Run <code>ioiconf setautobackup on</code> to enable automatic backup at a
+    <li>Run the <code>icpcbobackup</code> script at any time to perform the rsync.</li>
+    <li>Run <code>icpcboconf setautobackup on</code> to enable automatic backup at a
       5-minute interval. A random delay up to 30 seconds in inserted before automatic
       backup.</li>
-    <li>Run <code>ioiconf setautobackup off</code> to disable automatic backup.</li>
+    <li>Run <code>icpcboconf setautobackup off</code> to disable automatic backup.</li>
   </ul>
 
   <p>Backups are available only during contest and practice time.</p>
@@ -137,31 +137,31 @@
     particular, files deleted locally will also be removed at the remote. This replication only
     includes non-hidden files up to a maximum size of 100 KB.</p>
 
-  <p>To restore or retrieve files from remote, run <code>ioibackup -r</code>. The files will
+  <p>To restore or retrieve files from remote, run <code>icpcbobackup -r</code>. The files will
     be restored in <code>/tmp/restore</code>.</p>
 
   <h3>Automatic Screen Lock</h3>
 
   <p>Automatic screen lock is enabled by default, with a 30 second delay after 15 minutes of
     idle time. You can disable automatic screen lock by running
-    <code>ioiconf setscreenlock off</code>. Run <code>ioiconf setscreenlock on</code> to
+    <code>icpcboconf setscreenlock off</code>. Run <code>icpcboconf setscreenlock on</code> to
     re-enable automatic screen lock.
   </p>
 
   <h3>Timezone</h3>
 
   <p>The contestant machine is configured to show time in the <strong>Europe/Budapest</strong> timezone.
-    All dates and times communicated by the IOI 2025 organizers will be in
+    All dates and times communicated by the icpcbo 2025 organizers will be in
     Europe/Budapest timezone unless otherwise specified.</p>
 
   <p>If you strongly prefer to see the time in your local timezone, you can run
-    <code>ioiconf settz &lt;timezone&gt;</code>, where
+    <code>icpcboconf settz &lt;timezone&gt;</code>, where
     <code>&lt;timezone&gt;</code> is an appropriate TZ specification (according to
     <code>tzselect</code>). The changes will be effected the next time you login to
-    the <code>ioi</code> account.
+    the <code>icpcbo</code> account.
   </p>
 
-  <p>E.g.: <code>ioiconf settz UTC</code> to use GMT time.</p>
+  <p>E.g.: <code>icpcboconf settz UTC</code> to use GMT time.</p>
 
   <h3>Import VSCode extensions from local machine</h3>
 

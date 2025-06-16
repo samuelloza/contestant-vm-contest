@@ -10,4 +10,4 @@ There are various commands that are executed around contest time. They are autom
 
 ## Logging
 
-All IOI-related commands will create logs to `local0` facility. These logs will also be stored in `/opt/ioi/store/log/local.log` in the contestant VM.
+All icpcbo-related commands will create logs to `local0` facility. These logs will also be stored in `/opt/icpcbo/store/log/local.log` in the contestant VM.

@@ -3,7 +3,7 @@
 # We no longer use tinc VPN
 # TODO: refactor or remove this script entirely
 
-source /opt/ioi/config.sh
+source /opt/icpcbo/config.sh
 
 check_ip()
 {
@@ -40,18 +40,18 @@ do_config()
 #	cp $WORKDIR/vpn/rsa_key.* /etc/tinc/vpn/
 #	cp $WORKDIR/vpn/tinc.conf /etc/tinc/vpn/
 #	cp $WORKDIR/vpn/tinc-up /etc/tinc/vpn/
-#	cp $WORKDIR/vpn/ioibackup* /opt/ioi/config/ssh/
+#	cp $WORKDIR/vpn/icpcbobackup* /opt/icpcbo/config/ssh/
 
 	rm -r $WORKDIR
 #	USERID=$(cat /etc/tinc/vpn/tinc.conf | grep Name | cut -d\  -f3)
-#	chfn -f "$USERID" ioi
+#	chfn -f "$USERID" icpcbo
 
 #	systemctl stop zabbix-agent 2> /dev/null
 #	systemctl disable zabbix-agent 2> /dev/null
 
 #	systemctl enable tinc@vpn 2> /dev/null
 #	systemctl restart tinc@vpn
-#	/opt/ioi/sbin/firewall.sh start
+#	/opt/icpcbo/sbin/firewall.sh start
 
 	systemctl enable zabbix-agent 2> /dev/null
 	systemctl start zabbix-agent 2> /dev/null
@@ -59,58 +59,58 @@ do_config()
 	mkdir -p /root/.ssh && chmod 700 /root/.ssh
 	ssh-keyscan $BACKUP_SERVER > /root/.ssh/known_hosts
 
-	if [ ! -f /opt/ioi/run/instanceid.txt ]; then
-		openssl rand 10 | base32 > /opt/ioi/run/instanceid.txt
+	if [ ! -f /opt/icpcbo/run/instanceid.txt ]; then
+		openssl rand 10 | base32 > /opt/icpcbo/run/instanceid.txt
 	fi
 
-	echo "${CRED%|*}" > /opt/ioi/run/username.txt
-	echo "${CRED##*|}" > /opt/ioi/run/password.txt
+	echo "${CRED%|*}" > /opt/icpcbo/run/username.txt
+	echo "${CRED##*|}" > /opt/icpcbo/run/password.txt
 
 	exit 0
 }
 
-logger -p local0.info "IOICONF: invoke $1"
+logger -p local0.info "icpcboCONF: invoke $1"
 
 case "$1" in
 	fwstart)
-#		if [ -e /opt/ioi/run/lockdown ]; then
+#		if [ -e /opt/icpcbo/run/lockdown ]; then
 #			echo Not allowed to control firewall during lockdown mode
 #		else
-#			/opt/ioi/sbin/firewall.sh start
+#			/opt/icpcbo/sbin/firewall.sh start
 #		fi
 		;;
 	fwstop)
-#		if [ -e /opt/ioi/run/lockdown ]; then
+#		if [ -e /opt/icpcbo/run/lockdown ]; then
 #			echo Not allowed to control firewall during lockdown mode
 #		else
-#			/opt/ioi/sbin/firewall.sh stop
+#			/opt/icpcbo/sbin/firewall.sh stop
 #		fi
 		;;
 	vpnclear)
-#		if [ -e /opt/ioi/run/lockdown ]; then
+#		if [ -e /opt/icpcbo/run/lockdown ]; then
 #			echo Not allowed to control firewall during lockdown mode
 #		else
 #			systemctl stop tinc@vpn
 #			systemctl disable tinc@vpn 2> /dev/null
 #			systemctl stop zabbix-agent
 #			systemctl disable zabbix-agent 2> /dev/null
-#			/opt/ioi/sbin/firewall.sh stop
+#			/opt/icpcbo/sbin/firewall.sh stop
 #			rm /etc/tinc/vpn/ip.conf 2> /dev/null
 #			rm /etc/tinc/vpn/mask.conf 2> /dev/null
 #			rm /etc/tinc/vpn/hosts/* 2> /dev/null
 #			rm /etc/tinc/vpn/rsa_key.* 2> /dev/null
 #			rm /etc/tinc/vpn/tinc.conf 2> /dev/null
-#			rm /opt/ioi/config/ssh/ioibackup* 2> /dev/null
-#			chfn -f "" ioi
+#			rm /opt/icpcbo/config/ssh/icpcbobackup* 2> /dev/null
+#			chfn -f "" icpcbo
 #		fi
 		;;
 	vpnstart)
 #		systemctl start tinc@vpn
-#		/opt/ioi/sbin/firewall.sh start
+#		/opt/icpcbo/sbin/firewall.sh start
 		;;
 	vpnrestart)
 #		systemctl restart tinc@vpn
-#		/opt/ioi/sbin/firewall.sh start
+#		/opt/icpcbo/sbin/firewall.sh start
 		;;
 	vpnstatus)
 #		systemctl status tinc@vpn
@@ -145,11 +145,11 @@ EOM
 		if [ -f "/usr/share/zoneinfo/$2" ]; then
 			cat - <<EOM
 Your timezone will be set to $2 at your next login.
-*** Please take note that all dates and times communicated by the IOI 2023 ***
+*** Please take note that all dates and times communicated by the icpcbo 2023 ***
 *** organisers will be in Europe/Budapest timezone (GMT+2), unless it is     ***
 *** otherwise specified.                                                   ***
 EOM
-			echo "$2" > /opt/ioi/config/timezone
+			echo "$2" > /opt/icpcbo/config/timezone
 		else
 			cat - <<EOM
 Timezone $2 is not valid. Run tzselect to learn about the valid timezones
@@ -160,32 +160,32 @@ EOM
 		;;
 	setautobackup)
 		if [ "$2" = "on" ]; then
-			touch /opt/ioi/config/autobackup
+			touch /opt/icpcbo/config/autobackup
 			echo Auto backup enabled
 		elif [ "$2" = "off" ]; then
-			if [ -f /opt/ioi/config/autobackup ]; then
-				rm /opt/ioi/config/autobackup
+			if [ -f /opt/icpcbo/config/autobackup ]; then
+				rm /opt/icpcbo/config/autobackup
 			fi
 			echo Auto backup disabled
 		else
 			cat - <<EOM
 Invalid argument to setautobackup. Specify "on" to enable automatic backup
 of home directory, or "off" to disable automatic backup. You can always run
-"ioibackup" manually to backup at any time. Backups will only include
+"icpcbobackup" manually to backup at any time. Backups will only include
 non-hidden files less than 100KB in size.
 EOM
 		fi
 		;;
 	setscreenlock)
 		if [ "$2" = "on" ]; then
-			touch /opt/ioi/config/screenlock
-			sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.screensaver lock-enabled true
+			touch /opt/icpcbo/config/screenlock
+			sudo -Hu icpcbo dbus-run-session gsettings set org.gnome.desktop.screensaver lock-enabled true
 			echo Screensaver lock enabled
 		elif [ "$2" = "off" ]; then
-			if [ -f /opt/ioi/config/screenlock ]; then
-				rm /opt/ioi/config/screenlock
+			if [ -f /opt/icpcbo/config/screenlock ]; then
+				rm /opt/icpcbo/config/screenlock
 			fi
-			sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.screensaver lock-enabled false
+			sudo -Hu icpcbo dbus-run-session gsettings set org.gnome.desktop.screensaver lock-enabled false
 			echo Screensaver lock disabled
 		else
 			cat - <<EOM
@@ -195,15 +195,15 @@ EOM
 		fi
 		;;
 	getpubkey)
-#		curl -m 5 -s -f -o /opt/ioi/misc/id_ansible.pub "https://$POP_SERVER/ansible.pub" > /dev/null 2>&1
+#		curl -m 5 -s -f -o /opt/icpcbo/misc/id_ansible.pub "https://$POP_SERVER/ansible.pub" > /dev/null 2>&1
 #		RC=$?
 #		if [ ${RC} -ne 0 ]; then
 #			exit ${RC}
 #		fi
-#		chmod 664 /opt/ioi/misc/id_ansible.pub
-#		chown ansible:ansible /opt/ioi/misc/id_ansible.pub
+#		chmod 664 /opt/icpcbo/misc/id_ansible.pub
+#		chown ansible:ansible /opt/icpcbo/misc/id_ansible.pub
 #
-#		cp /opt/ioi/misc/id_ansible.pub /home/ansible/.ssh/authorized_keys
+#		cp /opt/icpcbo/misc/id_ansible.pub /home/ansible/.ssh/authorized_keys
 #		chmod 600 /home/ansible/.ssh/authorized_keys
 #		chown ansible:ansible /home/ansible/.ssh/authorized_keys
 #		exit 0

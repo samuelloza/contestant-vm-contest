@@ -1,4 +1,4 @@
-# IOI Contestant VM
+# icpcbo Contestant VM
 
 ## Install & set up
 
@@ -9,7 +9,7 @@ Install Ubuntu 24.04 server. Defaults work fine (but please uncheck the "Set up 
 When Ubuntu install completes, clone or copy this repo into a local directory. E.g.:
 
 ```bash
-git clone https://github.com/ioi/contestant-vm
+git clone https://github.com/icpcbo/contestant-vm
 sudo -s
 cd contestant-vm
 # Create config.local.sh; see config.local.sh.sample

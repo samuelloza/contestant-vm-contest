@@ -1,15 +1,15 @@
 #!/bin/bash
 
-source /opt/ioi/config.sh
+source /opt/icpcbo/config.sh
 
 case "$1" in
 	start)
 		# TODO update
-		cat /opt/ioi/misc/iptables.save | \
+		cat /opt/icpcbo/misc/iptables.save | \
 			sed -e 's/{BACKUP_SERVER}/'${BACKUP_SERVER}'/g' | \
 			sed -e 's/{CMS_PUBLIC_DOMAIN}/'${CMS_PUBLIC_DOMAIN}'/g' | \
 			sed -e 's#{SUBNET}#'${SUBNET}'#g' | iptables-restore
-		ip6tables-restore < /opt/ioi/misc/ip6tables.save
+		ip6tables-restore < /opt/icpcbo/misc/ip6tables.save
 		logger -p local0.info "FIREWALL: started"
 		;;
 	stop)
